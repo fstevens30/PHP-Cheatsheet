@@ -6,3 +6,9 @@ function writeMsg() {
 writeMsg() //This calls the function.
 ?>
 
+<?php
+function getRandomNum() {
+    echo rand(1,10); //generates a random number between 1 and 10
+}
+getRandomNum() //Call the function
+?>
