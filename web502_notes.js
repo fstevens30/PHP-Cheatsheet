@@ -99,4 +99,27 @@ function build_my_script() {
 }
 // END "DO NOT" 3
 
+// START Example 4.1
+/** Send User ID and First Name of User over to the custom.js script **/
+
+add_action( 'wp_enqueue_scripts', 'send_user_data_to_custom' );
+function send_user_data_to_custom() {
+    $src = get_stylesheet_directory_uri() . '/js/custom.js' ;
+    wp_register_script( 'custom-script', $src, array( 'jquery' ), '1', TRUE );
+    
+    wp_enqueue_script( 'custom-script' ); 
+        
+    global $current_user;
+    get_currentuserinfo();
+        
+    $data = array( 
+        'userid' => $current_user->ID,
+        'fname' => $current_user->user_firstname
+    );
+    
+    wp_localize_script( 'custom-script', 'userinfo', $data );
+    
+}
+// END Example 4.1
+
 
