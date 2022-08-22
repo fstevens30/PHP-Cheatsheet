@@ -46,3 +46,25 @@ function custom_script_for_pages() {
         wp_enqueue_script( 'custom-script' );
 }
 // END Example 1.3
+
+// START Example 2.1
+/** Enqueue the Draggable script already registered in WordPress by default **/
+add_action( 'wp_enqueue_scripts', 'enqueue_draggable' );
+function enqueue_draggable() {
+    
+    wp_enqueue_script( 'jquery-ui-draggable' );
+}
+// END Example 2.1
+
+// START Example 2.2
+/** Enqueue custom draggable script to automatically enqueue jquery-ui-draggable and draggable.js  **/
+
+add_action( 'wp_enqueue_scripts', 'custom_draggable_script' );
+function custom_draggable_script() {
+    
+    $src = get_stylesheet_directory_uri() . '/js/draggable.js' ;
+    wp_register_script( 'custom-draggable-script', $src, array( 'jquery','jquery-ui-draggable' ), '1', TRUE );
+    
+    wp_enqueue_script( 'custom-draggable-script' );
+}
+// END Example 2.2
