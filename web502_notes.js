@@ -82,3 +82,21 @@ function load_jquery_from_googleapis() {
     wp_enqueue_script( 'jquery' );
 }
 // END Example 3.1
+
+// START "DO NOT" 3
+/** Build out a JavaScript while in PHP **/
+add_action( 'wp_head', 'build_my_script' );
+function build_my_script() {
+   
+    global $current_user;
+    get_currentuserinfo();
+    
+    echo  "\r\n";
+    echo  '<script type="text/javascript">' . "\r\n";
+        echo "\t" . 'var userid = "' . esc_js( $current_user->ID ) . '";' . "\r\n";
+        echo "\t" . 'var fname = "' . esc_js( $current_user->user_firstname ) . '";' . "\r\n";
+    echo '</script>' . "\r\n";
+}
+// END "DO NOT" 3
+
+
