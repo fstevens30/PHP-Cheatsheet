@@ -68,3 +68,17 @@ function custom_draggable_script() {
     wp_enqueue_script( 'custom-draggable-script' );
 }
 // END Example 2.2
+
+// START Example 3.1
+/** Load jQuery from Google APIs **/
+add_action( 'wp_enqueue_scripts', 'load_jquery_from_googleapis' );
+function load_jquery_from_googleapis() {
+    
+    wp_deregister_script( 'jquery' );
+           
+    $src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
+    wp_register_script( 'jquery', $src, array(), '1.7.2');
+    
+    wp_enqueue_script( 'jquery' );
+}
+// END Example 3.1
